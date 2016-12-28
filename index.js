@@ -2,16 +2,12 @@
 
 "use strict";
 
-module.exports = function (items) {
-    if (items.length > 2) {
-        const last = items.pop();
-
-        return `${items.join(', ')}, and ${last}`;
-    }
-
-    if (items.length === 2) {
+module.exports = function enlist(items) {
+    if (items.length <= 2) {
         return items.join(' and ');
     }
 
-    return items[0] || '';
+    const last = items.pop();
+
+    return enlist([`${items.join(', ')},`, last]);
 };
