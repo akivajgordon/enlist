@@ -56,4 +56,16 @@ describe("enlist", function () {
             expect(enlist(['apples', 'bananas', 'oranges', 'cherries'])).toBe('apples, bananas, oranges, and cherries');
         });
     });
+
+    describe("'or' 3 items", function () {
+        it("should separate by commas and 'or'", function () {
+            expect(enlist.or(['apples', 'bananas', 'oranges'])).toBe('apples, bananas, or oranges');
+        });
+    });
+
+    describe("'or' 2 items", function () {
+        it("should separate by 'or'", function () {
+            expect(enlist.or(['apples', 'bananas'])).toBe('apples or bananas');
+        });
+    });
 });

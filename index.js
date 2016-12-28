@@ -2,12 +2,18 @@
 
 "use strict";
 
-module.exports = function enlist(items) {
+function enlistWithFinalConjuction(items, conjunction) {
     if (items.length <= 2) {
-        return items.join(' and ');
+        return items.join(` ${conjunction} `);
     }
 
     const last = items.pop();
 
-    return enlist([`${items.join(', ')},`, last]);
-};
+    return enlistWithFinalConjuction([`${items.join(', ')},`, last], conjunction);
+}
+
+const enlist = (items) => enlistWithFinalConjuction(items, 'and');
+
+enlist.or = (items) => enlistWithFinalConjuction(items, 'or');
+
+module.exports = enlist;
